@@ -1,0 +1,361 @@
+/* Переопределение стилей Quazar для компонентов */
+@import 'mixins.sass'
+
+.cs
+  /* Buttons */
+
+  // Крупная синяя кнопка
+  // Прмиер:
+  // <q-btn flat :ripple="false" class="cs__button" label="Создать опрос" />
+  &__button
+    font: 600 16px / 24px $inter
+    background: $color-accent-brand-normal
+    color: #ffffff
+    border-radius: 8px
+    text-transform: inherit
+    padding: 8px 20px
+
+    &:hover
+      background: $color-accent-brand-clarified
+
+    .q-focus-helper
+      display: none
+
+    &.q-btn--active
+      background: $color-accent-brand-normal
+      outline: 4px solid $color-focused-thin-brand !important
+
+    // Цвет бледно голубой
+    // Пример:
+    // <q-btn class="cs__button cs__button_light icon-column-blue" flat :ripple="false" :fab-mini="true" padding="8px" @click="columnDialog = true">
+    //   <IconColumnBlue/>
+    // </q-btn>
+    &_light
+      background: $color-accent-faint-brand-quaternary
+
+      &:hover
+        background: $color-accent-faint-brand-tertiary
+
+      &.q-btn--active
+        background: $color-accent-faint-brand-quaternary
+
+    // С прозрачным фоном
+    // Пример:
+    // <q-btn flat :ripple="false" label="Выбрать все" class="cs__button cs__button_limpid cs__button_s" />
+    &_limpid
+      background: transparent
+      color: $color-accent-brand-normal
+
+      &:hover
+        background: $color-on-surface-faint-tertiary
+
+      &.q-btn--active
+        background: transparent
+
+    // С серым фоном
+    // Пример
+    // <q-btn flat :ripple="false" :fab-mini="true" padding="2px" class="cs__button cs__button_gray q-ml-sm">
+    //   <IconFilterCell />
+    // </q-btn>
+    &_gray
+      background: $color-on-surface-faint-quaternary
+
+      &:hover
+        background: $color-on-surface-faint-tertiary
+
+      &.q-btn--active
+        background: $color-on-surface-faint-quaternary
+
+    // Меньше шрифт и отступы
+    // Пример
+    // <q-btn flat :ripple="false" label="Выбрать все" class="cs__button cs__button_limpid cs__button_s" />
+    &_s
+      font-size: 14px
+      line-height: 20px
+      padding: 6px 20px !important
+
+    // Скругление углов = 4px
+    // Пример
+    // <q-btn flat :ripple="false" :fab-mini="true" padding="2px" class="cs__button cs__button_gray cs__button_r4 q-ml-sm">
+    //   <IconFilterCell />
+    // </q-btn>
+    &_r4
+      border-radius: 4px
+
+
+  /* Inputs */
+  &__input.q-field--outlined
+    &.cs__input__search
+      width: 320px
+
+    .q-field
+      &__native
+        font: 500 14px / 20px $inter
+        color: $color-text-icon-base-primary
+
+        @include placeholder
+
+      &__marginal
+        height: 40px
+        color: $color-on-surface-secondary
+
+      &__control
+        height: 40px
+        background: #ffffff
+        border-radius: 8px
+
+        &:before
+          border-color: $color-on-surface-quaternary
+
+        &:hover:before
+          border-color: $color-on-surface-secondary
+
+    &.q-field--highlighted
+      .q-field__control
+        &:after
+          border: 1px solid $color-accent-brand-normal
+          outline: 2px solid $color-focused-thin-brand
+
+
+/* Dialog */
+.q-dialog
+  &__inner > div
+    border-radius: 12px
+    overflow: inherit
+    display: flex
+    flex-direction: column
+
+  .q-card__section--vert
+    padding: 24px 24px 12px 24px
+
+  .q-card__actions
+    padding: 24px
+
+.dialog
+  &__title
+    font: 700 18px / 24px $inter
+    color: $color-light-text-primary
+
+  &__content
+    background: $color-surface-secondary
+
+  &__close
+    color: $color-on-surface-secondary
+
+@media (min-width: 600px)
+  .q-dialog__inner--minimized > div
+    max-width: 600px
+    width: 600px
+
+
+/* Separator */
+.q-separator
+  background: $color-on-surface-quaternary
+
+
+/* Scroll */
+.scroll
+  @include scroll
+
+
+/* Table */
+.q-table
+  border-spacing: 0 4px
+
+  &__card
+    background: transparent
+    border-radius: none
+    box-shadow: none
+
+  &__bottom
+    background: #ffffff
+    border-top: none
+    flex-direction: row-reverse
+    justify-content: space-between
+    padding: 16px 32px
+
+    .q-table__separator
+      display: none
+
+    // Блок "Показывать по"
+    .q-table__control:nth-child(2)
+      font: 600 14px / 20px $inter
+      color: $color-text-icon-base-secondary
+      gap: 13px
+
+      > span
+        margin: 0
+
+      > label
+        margin: 0
+        width: 68px
+        height: 24px
+        border: 1px solid $color-on-surface-quaternary
+        border-radius: 4px
+
+        .q-field__control,
+        .q-field__native
+          min-height: 22px
+          padding: 0
+          font: 500 14px / 20px $inter
+          color: $color-text-icon-base-primary
+          justify-content: center
+          align-items: center
+
+        .q-field__append
+          padding: 0
+          width: 20px
+          height: 20px !important
+          background: url('@/assets/svg/icon-kb-arrow-down.svg') no-repeat center / 20px
+
+          i
+            display: none
+
+        .q-field__marginal
+          height: 24px
+
+      &::after
+        content: "записей на странице"
+
+
+
+  &__top
+    padding: 24px 32px 16px
+    gap: 12px
+
+  &__middle
+    padding: 0 32px
+
+  th
+    font: 600 14px / 20px $inter
+    color: $color-text-icon-base-primary
+    padding: 8px 12px
+    border: none
+    background: #ffffff
+
+    &:first-child
+      padding-left: 28px
+
+  tbody td
+    font: 500 14px / 20px $inter
+    color: $color-text-icon-base-primary
+    padding: 8px 12px
+    border: none
+    background: #FAFBFC
+
+    &:first-child
+      padding-left: 28px
+
+.sticky-table
+  /* height or max-height is important */
+  height: calc(100vh - 65px)
+
+  /* specifying max-width so the example can
+    highlight the sticky column on any browser window */
+  max-width: 100%
+
+  tr th
+    position: sticky
+    /* higher than z-index for td below */
+    z-index: 2
+
+    &:first-child
+      border-radius: 8px 0 0 8px
+
+    &:last-child
+      border-radius: 0 8px 8px 0
+
+  tr td
+    &:first-child
+      border-radius: 8px 0 0 8px
+
+    &:last-child
+      border-radius: 0 8px 8px 0
+
+  /* this will be the loading indicator */
+  thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+    /* highest z-index */
+    z-index: 3
+
+  thead tr:first-child th
+    top: 0
+    z-index: 1
+
+  tr:first-child th:first-child
+    /* highest z-index */
+    z-index: 3
+
+  td:first-child
+    z-index: 1
+
+  td:first-child, th:first-child
+    position: sticky
+    left: 0
+
+  /* prevent scrolling behind sticky top row on focus */
+  tbody
+    /* height of all previous header rows */
+    scroll-margin-top: 48px
+
+
+/* Pagination */
+.pagination
+  &__wrap
+    display: flex
+    align-items: center
+    gap: 8px
+    height: 24px
+    font: 500 14px / 20px $inter
+    color: $color-text-icon-base-primary
+
+    &::before
+      content: "Страница"
+      color: $color-text-icon-base-secondary
+      font-weight: 600
+
+    > div
+      > button
+        width: 20px
+        height: 20px
+        min-height: 20px
+        padding: 0
+
+  &__input
+    width: 52px
+
+    .q-field__control
+      height: 24px !important
+      border-radius: 4px !important
+
+    .q-field__native
+      text-align: center
+
+
+/* Disabled style */
+.disabled, .disabled *, [disabled], [disabled] *
+  cursor: default !important
+
+
+/* Checkbox */
+.q-checkbox
+  gap: 8px
+
+  &__inner
+    width: 24px
+    height: 24px
+    min-width: 24px
+
+    &::before
+      display: none
+
+  &__bg
+    position: relative
+    top: 2px
+    left: 2px
+    width: 20px
+    height: 20px
+
+  .no-outline
+    display: none
